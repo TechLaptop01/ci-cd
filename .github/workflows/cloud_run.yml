@@ -47,4 +47,6 @@ jobs:
           --region $REGION \
           --image gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
           --platform "managed" \
+          --port 9000 \ 
+          --allow-unauthenticated \
           --quiet
