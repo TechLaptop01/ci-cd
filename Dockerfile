@@ -32,7 +32,7 @@ WORKDIR /app/
 RUN flutter build web
 
 # Record the exposed port
-EXPOSE 9000
+EXPOSE 8080
 
 # make server startup script executable and start the web server
 RUN ["chmod", "+x", "/app/server/server.sh"]
