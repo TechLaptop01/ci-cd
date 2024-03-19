@@ -1,0 +1,15 @@
+# Exclude build artifacts
+build/
+*.iml
+*.lock
+*.log
+
+# Exclude Flutter-specific files
+android/
+ios/
+.vscode/
+.dart_tool/
+.pub-cache/
+
+# Exclude version control files
+.git/
