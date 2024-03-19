@@ -29,8 +29,8 @@ ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PAT
 RUN mkdir /app/
 COPY . /app/
 WORKDIR /app/
-RUN flutter build web
-
+#RUN flutter build web
+RUN flutter run -d web
 # Record the exposed port
 EXPOSE 8080
 
