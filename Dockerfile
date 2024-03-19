@@ -3,9 +3,9 @@ FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update
-RUN apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback python3
-RUN apt-get clean
+#RUN apt-get update
+#RUN apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback python3
+#RUN apt-get clean
 
 ENV DEBIAN_FRONTEND=dialog
 ENV PUB_HOSTED_URL=https://pub.flutter-io.cn
