@@ -39,11 +39,10 @@ jobs:
       - name: Docker Build with cache
         uses: whoan/docker-build-with-cache-action@next
         with:
-          username: whoan
-          password: "${{ secrets.NEW_TOKEN }}"
-          registry: ghcr.io
-          image_name: hello-world-push-on-push
-#          push_image_and_stages: on:push
+          username: _json_key
+          password: "${{ secrets.GCLOUD_JSON_KEY }}"
+          registry: gcr.io
+          image_name: flutter-image
 
       - name: Push the image to the Google Container Registry (GCR)
         run: |-
