@@ -21,11 +21,15 @@ ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PAT
 # Switch to a builder stage to build the Flutter application
 FROM base AS builder
 
+COPY . /app/
+
 # Create a directory for the application code
 WORKDIR /app/
 
 # Copy only the pubspec.yaml to install dependencies
 COPY pubspec.yaml .
+
+
 
 # Install Flutter dependencies
 RUN flutter pub get
@@ -40,7 +44,7 @@ RUN flutter build web
 FROM base AS production
 
 # Copy the built application from the builder stage
-#COPY --from=builder /app/build/web/ /app/
+COPY --from=builder /app/build/web/ /app/
 
 # Expose port 8080
 EXPOSE 8080
