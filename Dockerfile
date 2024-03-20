@@ -40,7 +40,7 @@ RUN flutter build web
 FROM base AS production
 
 # Copy the built application from the builder stage
-COPY --from=builder /app/build/web/ /app/
+#COPY --from=builder /app/build/web/ /app/
 
 # Expose port 8080
 EXPOSE 8080
