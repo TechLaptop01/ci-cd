@@ -71,13 +71,10 @@ jobs:
         run: |-
                 docker build . --tag gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
                 with:
-                context: .
-                cache-from: type=local,ref=/tmp/.buildx-cache
-                cache-to: type=local,ref=/tmp/.buildx-cache
-      #          with:
-      #          context: .
-      #          cache-from: type=local,ref=/tmp/.buildx-cache
-      #          cache-to: type=local,ref=/tmp/.buildx-cache
+                context: ./
+                cache-from: type=local,src=/tmp/.buildx-cache
+                cache-to: type=local,src=/tmp/.buildx-cache
+
 
       - name: Push the image to the Google Container Registry (GCR)
         run: |-
