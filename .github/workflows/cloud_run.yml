@@ -36,15 +36,15 @@ jobs:
             flutter-deps-${{ runner.os }}
 
       - name: Build and tag the docker image
-        run: |
+        run: |-
           docker build . --tag gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
 
       - name: Push the image to the Google Container Registry (GCR)
-        run: |
+        run: |-
           docker push gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
 
       - name: Deploy
-        run: |
+        run: |-
           gcloud run deploy $REPO_NAME \
           --region $REGION \
           --image gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
@@ -89,19 +89,19 @@ jobs:
 #      - name: Authorize Docker push
 #        run: gcloud auth configure-docker
 #
-#      - name: Build and tag the docker image
-#        run: |-
-#          docker build . --tag gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
-#
-#      - name: Push the image to the Google Container Registry (GCR)
-#        run: |-
-#          docker push gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
-#
-#      - name: Deploy
-#        run: |-
-#          gcloud run deploy $REPO_NAME \
-#          --region $REGION \
-#          --image gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
-#          --platform "managed" \
-#          --allow-unauthenticated \
-#          --quiet
+      - name: Build and tag the docker image
+        run: |-
+          docker build . --tag gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+
+      - name: Push the image to the Google Container Registry (GCR)
+        run: |-
+          docker push gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+
+      - name: Deploy
+        run: |-
+          gcloud run deploy $REPO_NAME \
+          --region $REGION \
+          --image gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
+          --platform "managed" \
+          --allow-unauthenticated \
+          --quiet
