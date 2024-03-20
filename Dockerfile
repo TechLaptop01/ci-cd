@@ -1,6 +1,9 @@
 # Use a base image with Flutter already installed
 FROM ubuntu:20.04 AS base
 
+# Set the timezone non-interactively to UTC
+ENV TZ=UTC
+
 RUN apt-get update \
     && apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback python3 \
     && apt-get clean
