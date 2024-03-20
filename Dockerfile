@@ -1,12 +1,16 @@
 # Use a base image with Flutter already installed
 FROM ubuntu:20.04 AS base
 
-# Set the timezone non-interactively to UTC
-ENV TZ=UTC
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
     && apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback python3 \
     && apt-get clean
+
+ENV DEBIAN_FRONTEND=dialog
+ENV PUB_HOSTED_URL=https://pub.flutter-io.cn
+ENV FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
 # Clone Flutter SDK if not already present
 RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter || true
