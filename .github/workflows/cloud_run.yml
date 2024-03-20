@@ -1,4 +1,3 @@
-## Previos yml file
 name: flutter-cloud-run
 
 on:
@@ -31,18 +30,8 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
 
-#      - name: Authorize Docker push
-#        run: gcloud auth configure-docker
-
-#      - name: Set up Docker Buildx
-#        id: buildx
-#        uses: docker/setup-buildx-action@v1
-
-#      - name: Cache register
-#        uses: actions/cache@v2
-#        with:
-#          path: /tmp/.buildx-cache
-#          key: ${{ runner.os }}-buildx-${{ hashFiles('**/Dockerfile') }}
+      - name: Authorize Docker push
+        run: gcloud auth configure-docker
 
       - name: chache it
         uses: satackey/action-docker-layer-caching@v0.0.11
@@ -51,11 +40,6 @@ jobs:
       - name: Build and tag the docker image
         run: |-
           docker build . --tag gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
-          tags: "<registry>/<image>:latest"
-#          with:
-#          context: .
-#          cache-from: type=local,ref=/tmp/.buildx-cache
-#          cache-to: type=local,ref=/tmp/.buildx-cache
 
       - name: Push the image to the Google Container Registry (GCR)
         run: |-
@@ -69,3 +53,4 @@ jobs:
           --platform "managed" \
           --allow-unauthenticated \
           --quiet
+
