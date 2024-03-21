@@ -56,7 +56,7 @@ jobs:
 #          docker push gcr.io/$PROJECT_ID/flutter-image
       - name: Cred
         run: |-
-          gcloud auth activate-service-account --key-file $CLOUD_RUN_CREDENTIALS
+          gcloud auth activate-service-account --key-file /home/runner/.docker/config.json
 
       - name: Deploy
         run: |-
