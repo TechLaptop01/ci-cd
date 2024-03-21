@@ -30,8 +30,8 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
 
-      - name: Authorize Docker push
-        run: gcloud auth configure-docker
+#      - name: Authorize Docker push
+#        run: gcloud auth configure-docker
 
 #      - name: Build and tag the docker image
 #        run: |-
@@ -54,9 +54,9 @@ jobs:
 #      - name: Push the image to the Google Container Registry (GCR)
 #        run: |-
 #          docker push gcr.io/$PROJECT_ID/flutter-image
-      - name: Cred
-        run: |-
-          gcloud auth activate-service-account --key-file /home/runner/.docker/config.json
+#      - name: Cred
+#        run: |-
+#          gcloud auth activate-service-account --key-file /home/runner/.docker/config.json
 
       - name: Deploy
         run: |-
