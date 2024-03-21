@@ -1,4 +1,3 @@
-
 # Install Operating system and dependencies
 FROM ubuntu:20.04
 
@@ -20,13 +19,18 @@ RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 # Set flutter environment path
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
+RUN flutter doctor
+
+RUN flutter channel master
+RUN flutter upgrade
+RUN flutter config --enable-web
 
 # Copy files to container and build
 RUN mkdir /app/
 COPY . /app/
 WORKDIR /app/
 RUN flutter build web
-#RUN flutter run -d web
+
 # Record the exposed port
 EXPOSE 8080
 
