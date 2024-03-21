@@ -46,19 +46,19 @@ jobs:
           username: _json_key
           password: "${{ secrets.GCLOUD_JSON_KEY }}"
           registry: gcr.io
-          image_name: ${{REPO_NAME}}
-          image_tag: ${{GITHUB_SHA}}
+          image_name: flutter-image
+
 
 
       - name: Push the image to the Google Container Registry (GCR)
         run: |-
-          docker push gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+          docker push gcr.io/$PROJECT_ID/flutter-image
 
       - name: Deploy
         run: |-
           gcloud run deploy $REPO_NAME \
           --region $REGION \
-          --image gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+          --image gcr.io/$PROJECT_ID/flutter-image
           --platform "managed" \
           --allow-unauthenticated \
           --quiet
