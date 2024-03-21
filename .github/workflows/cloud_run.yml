@@ -57,7 +57,7 @@ jobs:
 
       - name: Deploy
         run: |-
-          gcloud run deploy $REPO_NAME \
+          gcloud run deploy flutter-image \
           --region $REGION \
           --image gcr.io/$PROJECT_ID/flutter-image
           --platform "managed" \
