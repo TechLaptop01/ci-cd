@@ -58,6 +58,12 @@ jobs:
 #        run: |-
 #          gcloud auth activate-service-account --key-file /home/runner/.docker/config.json
 
+      # Authenticate with Google Cloud
+      - id: "auth"
+        uses: "google-github-actions/auth@v0"
+        with:
+          credentials_json: "${{ secrets.CLOUD_RUN_SERVICE_ACCOUNT }}"
+
       - name: Deploy
         run: |-
           gcloud run deploy flutter-image \
