@@ -40,16 +40,15 @@ jobs:
       - name: Github Checkout
         uses: actions/checkout@v4
 
-      - name: Docker Build with cache
-        uses: whoan/docker-build-with-cache-action@next
+      - uses: whoan/docker-build-with-cache-action@v5
         with:
-          username: _json_key
-          password: "${{ secrets.GCLOUD_JSON_KEY }}"
-          registry: gcr.io
+          username: whoan
+          password: "${{ secrets.GITHUB_TOKEN }}"
+          registry: docker.pkg.github.com
           image_name: flutter-image
 
-      - name: Authenticate Docker with GCR
-        run: gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-west3-docker.pkg.dev
+#      - name: Authenticate Docker with GCR
+#        run: gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-west3-docker.pkg.dev
 
       - name: Push the image to the Google Container Registry (GCR)
         run: |-
